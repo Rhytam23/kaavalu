@@ -1,0 +1,29 @@
+{
+  "model": "ssdlite320_mobilenet_v3_large",
+  "weights": "torchvision DEFAULT (COCO)",
+  "size": 320,
+  "mean": [
+    0.5,
+    0.5,
+    0.5
+  ],
+  "std": [
+    0.5,
+    0.5,
+    0.5
+  ],
+  "anchors": "anchors_320.npy",
+  "precision": "fp32",
+  "outputs": [
+    "cls_logits",
+    "bbox_regression"
+  ],
+  "num_classes": 91,
+  "file_bytes": 13791112,
+  "box_weights": [
+    10.0,
+    10.0,
+    5.0,
+    5.0
+  ]
+}

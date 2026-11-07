@@ -1,0 +1,8 @@
+{
+  "name": "example gate zone (normalised 0..1 coordinates)",
+  "points": [[0.25, 0.45], [0.75, 0.45], [0.95, 0.98], [0.05, 0.98]],
+  "capacity": 40,
+  "area_m2": null,
+  "safe_density_per_m2": null,
+  "note": "Edit the points to the choke point in your clip. Capacity = area_m2 x safe_density_per_m2 set by the venue; state it on every chart."
+}

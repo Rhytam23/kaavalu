@@ -1,0 +1,43 @@
+# Kaavalu run configuration. Every value can be overridden on the command line.
+
+model: models/det_int8.pte      # .pte -> ExecuTorch; "torch" -> PyTorch eager baseline
+backend: null                   # null = decide from the model path
+threads: 4                      # CPU threads for the runtime (Pi 5 has 4 cores)
+
+classes: [person]               # traffic clip: [car, bus, truck, motorcycle]
+score_threshold: 0.4            # choose on practice clips, never on the organiser clip
+nms_threshold: 0.55             # torchvision SSDLite default
+
+every: 1                        # process every Nth frame (1 = all frames)
+max_frames: null
+
+tiling:
+  mode: adaptive                # off | on | adaptive
+  rows: 2
+  cols: 2
+  overlap: 0.2                  # fraction of a tile shared with its neighbour
+  merge_metric: ios             # ios = overlap / smaller box (removes nested copies); iou = plain NMS
+  merge_threshold: 0.6
+  drop_group_boxes: true        # drop a box that wraps 2+ smaller detections (a "group" box)
+  clean_full_frame: true        # apply the same merge to untiled frames (false = raw detector output)
+  edge_margin: 2                # px; drop tile boxes cut by an interior tile edge
+  # adaptive rule: tile when the full-frame pass sees a crowd or many small boxes
+  min_count: 15
+  small_height_frac: 0.08       # "small" = box shorter than 8% of frame height
+  small_fraction: 0.3           # tile when >= 30% of boxes are small
+  tile_when_empty: true
+
+zone: null                      # zone JSON, e.g. zones/example_zone.json
+capacity: null                  # people the zone holds safely (area m^2 x safe density)
+
+occupancy:
+  smooth_s: 1.0
+  amber_at: 60                  # percent
+  red_at: 85
+  rise_points: 20               # early AMBER if occupancy rises this much ...
+  rise_window_s: 3              # ... within this many seconds
+
+outputs:
+  dir: results
+  save_all_frames: true
+  warmup_runs: 3                # untimed runs before the first frame

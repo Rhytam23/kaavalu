@@ -1,0 +1,12 @@
+# Laptop / Colab: export the detector to .pte. Pin the versions the whole team uses
+# (ExecuTorch import paths move between releases). Tested with:
+#   executorch 1.6.0, torch 2.15.0, torchvision 0.29.2, torchao 0.18.0
+executorch==1.6.0
+torch
+torchvision
+torchao
+numpy
+opencv-python          # GUI build: tools/handcount.py opens a window
+pyyaml
+matplotlib
+pytest

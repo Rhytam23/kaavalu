@@ -1,0 +1,9 @@
+# Raspberry Pi 5, 64-bit Raspberry Pi OS (Python 3.10+).
+# executorch pulls in a matching torch wheel; torchvision is only needed for the
+# PyTorch eager baseline in tools/benchmark.py.
+executorch
+numpy
+opencv-python-headless
+pyyaml
+matplotlib
+pytest

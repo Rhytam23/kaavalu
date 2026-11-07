@@ -1,0 +1,8 @@
+# LF everywhere so shell scripts run on the Pi after a Windows checkout
+* text=auto eol=lf
+*.ps1 text eol=crlf
+
+*.pte binary
+*.npy binary
+*.jpg binary
+*.png binary
